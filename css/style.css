@@ -1,0 +1,38 @@
+*{
+    margin: 0;
+    padding: 0;
+    user-select: none;
+}
+
+.btn-menu{
+    color: #757575;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.btn-menu:hover{
+    color: #FF9800;
+}
+
+.header{
+    background-color: #353f43;
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.menu{
+    align-items: center;
+    display: flex;
+    gap: 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.products{
+    padding-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+}
+
