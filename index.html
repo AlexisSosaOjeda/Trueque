@@ -7,39 +7,31 @@
     <title>Trueque</title>
 </head>
 <body>
+    <!-- Partículas flotantes -->
+    <div class="particle" style="top: 10%; left: 10%; width: 4px; height: 4px; animation-delay: 0s;"></div>
+    <div class="particle" style="top: 20%; left: 80%; width: 6px; height: 6px; animation-delay: 1s;"></div>
+    <div class="particle" style="top: 60%; left: 15%; width: 3px; height: 3px; animation-delay: 2s;"></div>
+    <div class="particle" style="top: 80%; left: 70%; width: 5px; height: 5px; animation-delay: 3s;"></div>
+
     <div class="header">
-            <div class="icon"><img src="img/icon.png" alt="Icon" draggable="false"></div>
-            <div class="menu">
-                <p class="btn-menu">Productos</p>
-                <p class="btn-menu">Historial</p>
-            </div>
+        <div class="logo-container">
+            <div class="icon">T</div>
+            <div class="logo-text">Trueque</div>
+        </div>
+        <div class="menu">
+            <p class="btn-menu">Productos</p>
+            <p class="btn-menu">Historial</p>
+            <p class="btn-menu">Mi Perfil</p>
+        </div>
     </div>
 
     <div class="container">
-        <div class="products">
-
-            <div class="product">
-                <img src="img/product1.jpg" alt="Product 1">
-                <h3>Producto 1</h3>
-                <p>Descripción del producto 1.</p>
-                <p>Quien lo offrece</p>
-            </div>
-
-            <div class="product">
-                <img src="img/product1.jpg" alt="Product 1">
-                <h3>Producto 1</h3>
-                <p>Descripción del producto 1.</p>
-                <p>Quien lo offrece</p>
-            </div>
-
-            <div class="product">
-                <img src="img/product1.jpg" alt="Product 1">
-                <h3>Producto 1</h3>
-                <p>Descripción del producto 1.</p>
-                <p>Quien lo offrece</p>
-            </div>
-            
+        <div class="section-title">
+            <h1>Productos Disponibles</h1>
         </div>
+
+        <div class="products"></div>
     </div>
+    <script src="js/script.js"></script>
 </body>
 </html>

@@ -1,38 +1,582 @@
+/* 
+    Estilos generales para toda la estructura de la página.
+    Se eliminan márgenes y rellenos por defecto (margin: 0; padding: 0;),
+    se usa box-sizing: border-box para que los paddings y bordes no sumen al ancho/alto,
+    y se evita la selección de texto (user-select: none) para una experiencia más limpia.
+*/
 *{
     margin: 0;
     padding: 0;
+    box-sizing: border-box; 
     user-select: none;
 }
 
-.btn-menu{
-    color: #757575;
-    cursor: pointer;
-    transition: color 0.2s;
+/* 
+    Estilo base del body: 
+    - Fuente moderna y legible (font-family).
+    - Fondo con gradiente diagonal (background: linear-gradient).
+    - Altura mínima para cubrir toda la pantalla (min-height: 100vh).
+    - Color de texto principal (color: #333).
+*/
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    color: #333;
 }
 
-.btn-menu:hover{
-    color: #FF9800;
-}
-
-.header{
-    background-color: #353f43;
-    padding: 15px 40px;
+/* 
+    Encabezado principal (header):
+    - Fondo semitransparente y difuminado (background + backdrop-filter).
+    - Borde inferior sutil: el borde es de 1px y color blanco muy transparente (border-bottom: 1px solid rgba(255,255,255,0.2)), 
+      lo que lo hace apenas visible y no dominante.
+    - Espaciado interno (padding: 20px 40px).
+    - Disposición flexible (display: flex, justify-content: space-between, align-items: center).
+    - Fijo en la parte superior (position: sticky; top: 0; z-index: 100).
+    - Sombra suave (box-shadow: 0 8px 32px rgba(0,0,0,0.1)), que da profundidad sin ser invasiva.
+*/
+.header {
+    background: rgba(255, 255, 255, 0.1); /* Semitransparente */
+    backdrop-filter: blur(20px); /* Difuminado */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Borde inferior sutil */
+    padding: 20px 40px;
     display: flex;
     justify-content: space-between;
-}
-
-.menu{
     align-items: center;
-    display: flex;
-    gap: 20px;
-    font-size: 20px;
-    font-weight: bold;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); /* Sombra suave */
 }
 
-.products{
-    padding-top: 30px;
+/* 
+    Contenedor del logo:
+    - Elementos alineados al centro (align-items: center).
+    - Separación entre ellos (gap: 15px).
+*/
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* 
+    Icono del logo:
+    - Tamaño fijo (width/height: 50px).
+    - Fondo con gradiente (background: linear-gradient).
+    - Bordes redondeados (border-radius: 12px).
+    - Centrado (display: flex; align-items/justify-content: center).
+    - Sombra para resaltar (box-shadow).
+    - Texto grande y blanco (font-size, color).
+*/
+.icon {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* 
+    Texto del logo:
+    - Tamaño grande (font-size: 28px).
+    - Negrita (font-weight: bold).
+    - Color blanco (color: white).
+    - Sombra para resaltar sobre el fondo (text-shadow).
+*/
+.logo-text {
+    font-size: 28px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* 
+    Menú de navegación:
+    - Elementos alineados (align-items: center).
+    - Separados entre sí (gap: 30px).
+    - Centrado horizontalmente (justify-content: center).
+*/
+.menu {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 
+    Botones del menú:
+    - Color blanco semitransparente (color: rgba(255,255,255,0.8)).
+    - Efecto hover: cambia a blanco sólido y fondo semitransparente.
+    - Padding y bordes redondeados para apariencia de "píldora".
+    - Efecto de brillo al pasar el mouse: usa un gradiente animado con ::before.
+    - Transiciones suaves (transition).
+*/
+.btn-menu {
+    color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 10px 20px;
+    border-radius: 25px;
+    position: relative;
+    overflow: hidden;
+}
+
+/*
+    Este bloque de código usa algo llamado ::before.
+    ::before sirve para poner algo **extra** delante de un elemento, sin cambiar su contenido real.
+    En este caso, se utiliza para agregar un efecto de brillo animado sobre cada botón del menú.
+    Ese brillo se logra con un gradiente semitransparente que se mueve de izquierda a derecha cuando pasas el mouse.
+    Así, el botón se ve más interactivo y moderno, sin tener que cambiar el HTML.
+    Es una forma de hacer que los botones sean más atractivos visualmente solo con CSS.
+*/
+.btn-menu::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.btn-menu:hover {
+    color: white;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-menu:hover::before {
+    left: 100%;
+}
+
+/* 
+    Contenedor principal de la página:
+    - Espaciado interno (padding).
+    - Ancho máximo (max-width: 1400px).
+    - Centrado horizontalmente (margin: 0 auto).
+*/
+.container {
+    padding: 60px 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* 
+    Título de sección:
+    - Centrado (text-align: center).
+    - Margen inferior para separación (margin-bottom: 50px).
+*/
+.section-title {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.section-title h1 {
+    font-size: 48px;
+    color: white;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.section-title p {
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* 
+    Grid de productos:
+    - Distribución responsiva en columnas (grid-template-columns: repeat(auto-fit, minmax(320px, 1fr))).
+    - Separación entre productos (gap: 40px).
+    - Centrado de los productos en su celda (justify-items: center).
+*/
+.products {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px;
     justify-items: center;
 }
 
+/* 
+    Tarjeta de producto:
+    - Fondo blanco semitransparente (background).
+    - Difuminado (backdrop-filter).
+    - Bordes redondeados (border-radius).
+    - Sombra suave (box-shadow).
+    - Transición suave al hacer hover (transition).
+    - Borde sutil: 1px blanco muy transparente (border: 1px solid rgba(255,255,255,0.3)).
+    - Posición relativa para efectos internos.
+    - Oculta desbordes (overflow: hidden).
+*/
+.product {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 25px;
+    width: 100%;
+    max-width: 350px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/*
+    shimmer:
+    - "shimmer" es el nombre de la animación definida con @keyframes. Es un nombre descriptivo que YO puse, 
+      y no es un nombre reservado de CSS.
+    - Esta animación crea un efecto de brillo o destello en movimiento sobre la parte superior de la tarjeta.
+    - Se logra desplazando la posición del fondo (background-position) de un gradiente de colores de un extremo al otro.
+
+    keyframes:
+    - La regla @keyframes permite definir los estados intermedios de una animación CSS, es decir, 
+      cómo cambia el estilo de un elemento a lo largo del tiempo.
+    - En este caso, "shimmer" define cómo cambia la posición del fondo a lo largo del tiempo para simular el movimiento del brillo.
+    - El gradiente se mueve de derecha a izquierda y vuelve a su posición original, creando un ciclo infinito de animación.
+
+    
+    - Se utiliza @keyframes dentro del CSS para animar el gradiente y dar un efecto visual atractivo y moderno.
+    - El nombre "shimmer" es descriptivo y hace referencia al efecto de brillo animado que se busca lograr, si es necesario luego
+    le colocamos otro nombre.
+*/
+/* 
+    Efecto de brillo animado en la parte superior de la tarjeta:
+    - Un gradiente de colores recorre la parte superior (background + animation).
+    - El gradiente es sutil porque solo ocupa 4px de alto y es semitransparente.
+*/
+/*
+    Este bloque de código usa algo llamado ::before.
+    ::before sirve para poner algo **extra** delante de un elemento, sin cambiar su contenido real.
+    En este caso, se agrega una barra decorativa arriba de cada elemento con la clase .product.
+    Esa barra se hace con colores y un efecto de brillo que se mueve, para que se vea más llamativa.
+    Es una forma de hacer que un elemento se vea más moderno y atractivo, sin tener que cambiar el HTML.
+*/
+
+.product::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #FF6B6B, #4ECDC4, #45B7D1, #96CEB4);
+    background-size: 200% 100%;
+    animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0%, 100% { background-position: 200% 0; }
+    50% { background-position: -200% 0; }
+}
+
+/* 
+    Efecto al pasar el mouse sobre la tarjeta:
+    - Se eleva (transform: translateY(-10px)).
+    - Sombra más intensa (box-shadow: 0 30px 60px rgba(0,0,0,0.2)).
+*/
+.product:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+}
+
+/* 
+    Contenedor de la imagen o icono del producto:
+    - Fondo claro con gradiente (background).
+    - Bordes redondeados (border-radius).
+    - Centrado (display: flex; align-items/justify-content: center).
+    - Tamaño fijo (height: 220px).
+    - Oculta desbordes (overflow: hidden).
+    - Margen inferior para separación (margin-bottom: 20px).
+*/
+.img-container {
+    width: 100%;
+    height: 220px;
+    border-radius: 15px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    position: relative;
+    background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.img-container::after {
+    font-size: 48px;
+    opacity: 0.3;
+}
+
+/* 
+    Imagen del producto:
+    - Ocupa todo el contenedor (width/height: 100%).
+    - Mantiene proporción (object-fit: cover).
+    - Efecto de zoom al hacer hover (transform: scale(1.05)).
+*/
+.product img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.product:hover img {
+    transform: scale(1.05);
+}
+
+/* 
+    Información del producto:
+    - Centrado (text-align: center).
+*/
+.product-info {
+    text-align: center;
+}
+
+/* 
+    Título del producto:
+    - Tamaño mediano (font-size: 22px).
+    - Color oscuro (color: #333).
+    - Negrita (font-weight: 600).
+    - Margen inferior (margin-bottom: 10px).
+*/
+.product h3 {
+    font-size: 22px;
+    color: #333;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+/* 
+    Descripción del producto:
+    - Color gris (color: #666).
+    - Tamaño pequeño (font-size: 14px).
+    - Altura limitada (height: 60px).
+    - Si es muy larga, muestra puntos suspensivos (overflow: hidden, text-overflow: ellipsis, -webkit-line-clamp: 3).
+    - Usa -webkit-box para limitar líneas y cortar el texto, podemos personalizarlo a 4 o 2 lineas, pero prefiero 3.
+*/
+.product-description {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    height: 60px;
+    overflow: hidden;
+    display: -webkit-box;
+    line-clamp: 3;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;;
+}
+
+/* 
+    Contenedor del usuario dueño del producto:
+    - Fondo semitransparente (background).
+    - Difuminado (backdrop-filter).
+    - Bordes redondeados (border-radius).
+    - Sombra y transición suave.
+    - Espaciado interno (padding: 15px).
+    - Elementos alineados (display: flex; align-items: center).
+    - Separación entre avatar y datos (gap: 12px).
+    - Margen superior para separación (margin-top: 15px).
+*/
+.product-owner {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 15px;
+    transition: all 0.3s ease;
+}
+
+/*
+    flex-shrink: 0;
+    Evita que el avatar reduzca su tamaño cuando el contenedor flexible (flex container) se hace más pequeño.
+    Esto asegura que el avatar mantenga siempre sus dimensiones fijas, sin encogerse, incluso si hay falta de espacio.
+*/
+/* 
+    Avatar del usuario:
+    - Círculo con gradiente (background).
+    - Iniciales centradas (display: flex; align-items/justify-content: center).
+    - Sombra para resaltar (box-shadow).
+    - Color blanco (color: white).
+    - Tamaño fijo (width/height: 40px).
+    - Negrita y tamaño de texto adecuado.
+*/
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #FF6B6B, #4ECDC4, #45B7D1, #96CEB4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    flex-shrink: 0;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* 
+    Información del usuario (nombre y rating):
+    - Disposición en columna (flex-direction: column).
+    - Separación mínima entre nombre y rating (gap: 2px).
+*/
+.user-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+/* 
+    Nombre del usuario:
+    - Color oscuro (color: #333).
+    - Negrita (font-weight: 600).
+    - Tamaño mediano (font-size: 15px).
+*/
+.user-name {
+    color: #333;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+/* 
+    Rating del usuario:
+    - Estrellas y calificación alineados (display: flex; align-items: center).
+    - Tamaño pequeño (font-size: 12px).
+    - Color gris (color: #666).
+    - Separación entre estrellas y número (gap: 5px).
+*/
+.user-rating {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    color: #666;
+}
+
+/* 
+    Contenedor de estrellas:
+    - Estrellas alineadas y separadas (display: flex; gap: 2px).
+*/
+.stars {
+    display: flex;
+    gap: 2px;
+}
+
+/* 
+    Estrella llena:
+    - Color dorado (color: #FFD700).
+    - Tamaño pequeño (font-size: 14px).
+*/
+.star {
+    color: #FFD700;
+    font-size: 14px;
+}
+
+/* 
+    Estrella vacía:
+    - Color gris claro (color: #ddd).
+*/
+.star.empty {
+    color: #ddd;
+}
+
+/* 
+    Botón de acción para proponer intercambio:
+    - Fondo con gradiente (background).
+    - Color blanco (color: white).
+    - Bordes redondeados (border-radius: 25px).
+    - Sombra y transición suave.
+    - Efecto de elevación y sombra más intensa al hacer hover.
+    - Ocupa todo el ancho (width: 100%).
+    - Padding cómodo y texto en negrita.
+*/
+.trade-btn {
+    background: linear-gradient(10deg, #FF6B6B, #4ECDC4);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 15px;
+    width: 100%;
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+}
+
+.trade-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+}
+
+/* 
+    Efectos de partículas decorativas en el fondo:
+    - Círculos animados que flotan (position: absolute, border-radius: 50%).
+    - No interfieren con el mouse (pointer-events: none).
+    - Animación de flotación (animation: float).
+    - Nuevamente, float es un nombre descriptivo que le puse a la animación, no es un nombre reservado de CSS.
+*/
+.particle {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0; }
+    50% { transform: translateY(-100px) rotate(180deg); opacity: 1; }
+}
+
+/* 
+    Estilos responsivos para pantallas pequeñas:
+    - Ajusta paddings, tamaños y disposición de los elementos para mejor visualización en móviles.
+    - El header se apila en columna, los productos se muestran en una sola columna, etc.
+*/
+@media (max-width: 768px) {
+    .header {
+        padding: 15px 20px;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .menu {
+        gap: 20px;
+    }
+
+    .container {
+        padding: 40px 20px;
+    }
+
+    .section-title h1 {
+        font-size: 36px;
+    }
+
+    .products {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+}
